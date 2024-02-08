@@ -1,6 +1,7 @@
 package com.etecnia.testlibapp
 
 import android.Manifest
+import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -39,29 +40,47 @@ class MainActivity : AppCompatActivity() {
         binding.fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
+            val citiConnect = CitiConnect(this@MainActivity);
+
+            citiConnect.sendOpenSignal()
         }
 
-        val citiConnect = CitiConnect(this@MainActivity);
-        citiConnect.createBeacon()
 
-        Dexter.withContext(this)
-            .withPermissions(
-                Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.ACCESS_COARSE_LOCATION,
-                Manifest.permission.BLUETOOTH_SCAN,
-                Manifest.permission.BLUETOOTH_CONNECT,
-                Manifest.permission.BLUETOOTH_ADVERTISE,
-                Manifest.permission.ACCESS_BACKGROUND_LOCATION,
-            ).withListener(object : MultiplePermissionsListener {
-                override fun onPermissionsChecked(report: MultiplePermissionsReport) { /* ... */
-                }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            Dexter.withContext(this)
+                .withPermissions(
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION,
+                    Manifest.permission.BLUETOOTH_SCAN,
+                    Manifest.permission.BLUETOOTH_CONNECT,
+                    Manifest.permission.BLUETOOTH_ADVERTISE,
+                    Manifest.permission.ACCESS_BACKGROUND_LOCATION,
+                ).withListener(object : MultiplePermissionsListener {
+                    override fun onPermissionsChecked(report: MultiplePermissionsReport) { /* ... */
+                    }
 
-                override fun onPermissionRationaleShouldBeShown(
-                    permissions: List<PermissionRequest?>?,
-                    token: PermissionToken?
-                ) { /* ... */
-                }
-            }).check()
+                    override fun onPermissionRationaleShouldBeShown(
+                        permissions: List<PermissionRequest?>?,
+                        token: PermissionToken?
+                    ) { /* ... */
+                    }
+                }).check()
+        } else {
+            Dexter.withContext(this)
+                .withPermissions(
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION,
+                ).withListener(object : MultiplePermissionsListener {
+                    override fun onPermissionsChecked(report: MultiplePermissionsReport) { /* ... */
+                    }
+
+                    override fun onPermissionRationaleShouldBeShown(
+                        permissions: List<PermissionRequest?>?,
+                        token: PermissionToken?
+                    ) { /* ... */
+                    }
+                }).check()
+        }
 
     }
 
