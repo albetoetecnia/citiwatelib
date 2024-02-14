@@ -40,6 +40,7 @@ class FirstFragment : Fragment() {
             this.citiConnect.discover {
                 Log.d("DISCOVER", it)
                 this.binding.textviewFirst.text = binding.textviewFirst.text.toString() + " " + it
+                citiConnect.sendOpenSignal()
             }
         }
 

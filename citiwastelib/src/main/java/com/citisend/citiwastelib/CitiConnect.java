@@ -38,16 +38,7 @@ public class CitiConnect {
     private boolean grantedPermissions() {
         if (this.activity.checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
-            if (this.activity.checkSelfPermission(Manifest.permission.ACCESS_BACKGROUND_LOCATION)
-                    != PackageManager.PERMISSION_GRANTED) {
-
-                return false;
-
-            } else {
-
-                return true;
-
-            }
+            return true;
         } else {
             return false;
         }
@@ -60,32 +51,12 @@ public class CitiConnect {
         beaconManager.addRangeNotifier((beacons, region) -> {
             if (beacons.size() > 0) {
                 Log.i(TAG, "The first beacon I see is about " + beacons.iterator().next().getDistance() + " meters away.");
+                Log.i(TAG, "UUID" + beacons.iterator().next().getId1() + " meters away.");
                 onDiscoverWaste.onDiscover(beacons.iterator().next().getBluetoothAddress());
             }
         });
-        region = new Region("myRegion", Identifier.parse("434d4400-1008-0000-0000-000000000100"), null, null);
+        region = new Region("myRegion", null, null, null);
         beaconManager.startRangingBeacons(region);
-
-
-        beaconManager.addMonitorNotifier(new MonitorNotifier() {
-            @Override
-            public void didEnterRegion(Region region) {
-                Log.i(TAG, "I just saw an beacon for the first time!");
-            }
-
-            @Override
-            public void didExitRegion(Region region) {
-                Log.i(TAG, "I no longer see an beacon");
-            }
-
-            @Override
-            public void didDetermineStateForRegion(int state, Region region) {
-                Log.i(TAG, "I have just switched from seeing/not seeing beacons: "+state);
-            }
-        });
-
-        beaconManager.startMonitoring(region);
-
     }
 
     public void destroy() {
