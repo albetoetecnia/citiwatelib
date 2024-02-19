@@ -51,16 +51,13 @@ class FirstFragment : Fragment() {
                 this.citiConnect.discover({ name, state ->
                     Log.d("DISCOVER", name)
                     if (state == State.EVENT_LOCK_CLOSED_PRESENCE) {
-                        // Presencia detectada, proceder a crear beacon para apertura
                         this.binding.textviewFirst.text = "Presencia detectada"
                     }
                     if (state == State.EVENT_LOCK_OPENED) {
-                        // Presencia detectada, proceder a crear beacon para apertura
                         this.binding.textviewFirst.text =
                             "${this.binding.textviewFirst.text}${System.getProperty("line.separator")}Pasador abierto"
                     }
                     if (state == State.EVENT_LOCK_CLOSED_DOOR_OPENED) {
-                        // Presencia detectada, proceder a crear beacon para apertura
                         this.binding.textviewFirst.text =
                             "${this.binding.textviewFirst.text}${System.getProperty("line.separator")}Puerta abierta"
                         binding.buttonFirst.setBackgroundColor(Color.MAGENTA)

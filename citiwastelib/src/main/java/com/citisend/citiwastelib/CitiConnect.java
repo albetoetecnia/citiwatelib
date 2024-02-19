@@ -153,7 +153,7 @@ public class CitiConnect {
         return isMonitoring;
     }
 
-    public void sendOpenSignal() {
+    private void sendOpenSignal() {
         if (!grantedPermissions()) {
             Log.d("CITICONNECT", "Nor permissions granted");
             return;
