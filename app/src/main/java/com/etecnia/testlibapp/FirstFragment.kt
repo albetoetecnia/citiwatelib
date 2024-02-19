@@ -67,7 +67,7 @@ class FirstFragment : Fragment() {
                         binding.buttonFirst.text = "DESCUBRIR"
                     }
                 }, { error ->
-                    citiConnect.destroy()
+                    //citiConnect.destroy()
                     binding.buttonFirst.setBackgroundColor(Color.MAGENTA)
                     binding.buttonFirst.text = "DESCUBRIR"
                     if (error == TIME_OUT_DOOR) {

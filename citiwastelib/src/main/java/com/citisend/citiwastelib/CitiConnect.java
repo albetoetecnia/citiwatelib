@@ -37,6 +37,7 @@ public class CitiConnect {
     private boolean isOpenedLock = false;
     private boolean isOpenedDoor = false;
     private boolean discoverd = false;
+    Beacon beaconSelected;
 
     public CitiConnect(Activity activity, @Nullable Integer timer_lock_opened, @Nullable Integer timer_door_opened) {
         this.activity = activity;
@@ -63,7 +64,6 @@ public class CitiConnect {
                 == PackageManager.PERMISSION_GRANTED;
     }
 
-    Beacon beaconSelected;
 
     public void discover(OnDiscoverWaste onDiscoverWaste, OnErrorWaste onErrorWaste) {
         destroy();
@@ -79,7 +79,7 @@ public class CitiConnect {
                     if (beaconSelected == null) {
                         continueFirstTime = true;
                     } else {
-                        if (!Objects.equals(beacon.getBluetoothAddress(), beaconSelected.getBluetoothAddress())){
+                        if (!Objects.equals(beacon.getBluetoothAddress(), beaconSelected.getBluetoothAddress())) {
                             return;
                         }
                     }
@@ -96,8 +96,10 @@ public class CitiConnect {
                                 beaconSelected = beacon;
                                 isOpenedLock = false;
                                 handler.postDelayed(() -> {
-                                    if (!isOpenedLock)
+                                    if (!isOpenedLock) {
                                         onErrorWaste.onError(Error.TIME_OUT_LOCK);
+                                        this.destroy();
+                                    }
                                 }, timer_lock_opened * 1000L);
                                 this.sendOpenSignal();
                                 onDiscoverWaste.onDiscover(name, State.EVENT_LOCK_CLOSED_PRESENCE);
@@ -110,8 +112,10 @@ public class CitiConnect {
                             isOpenedLock = true;
                             isOpenedDoor = false;
                             handler.postDelayed(() -> {
-                                if (!isOpenedDoor)
+                                if (!isOpenedDoor) {
                                     onErrorWaste.onError(Error.TIME_OUT_DOOR);
+                                    this.destroy();
+                                }
                             }, timer_door_opened * 1000L);
                             onDiscoverWaste.onDiscover(name, State.EVENT_LOCK_OPENED);
                             return;
