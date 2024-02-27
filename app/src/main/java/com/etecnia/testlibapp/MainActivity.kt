@@ -46,7 +46,6 @@ class MainActivity : AppCompatActivity() {
                     Manifest.permission.BLUETOOTH_SCAN,
                     Manifest.permission.BLUETOOTH_CONNECT,
                     Manifest.permission.BLUETOOTH_ADVERTISE,
-                    Manifest.permission.ACCESS_BACKGROUND_LOCATION,
                 ).withListener(object : MultiplePermissionsListener {
                     override fun onPermissionsChecked(report: MultiplePermissionsReport) { /* ... */
                     }
