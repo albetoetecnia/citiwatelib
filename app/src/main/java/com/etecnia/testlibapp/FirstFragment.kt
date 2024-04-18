@@ -39,7 +39,7 @@ class FirstFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        citiConnect = CitiConnect(activity, 10, 20);
+        citiConnect = CitiConnect(activity, 5888, 111,10, 20);
         binding.simulate.setOnClickListener {
             citiConnect.simulateWaste()
         }
