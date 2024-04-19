@@ -43,6 +43,12 @@ class FirstFragment : Fragment() {
         binding.simulate.setOnClickListener {
             citiConnect.simulateWaste()
         }
+        binding.simulate2.setOnClickListener {
+            citiConnect.simulateWasteSucceeded()
+        }
+        binding.simulate3.setOnClickListener {
+            citiConnect.simulateWasteRejected()
+        }
         binding.buttonFirst.setOnClickListener {
             if (!citiConnect.isMonitoring) {
                 binding.buttonFirst.setBackgroundColor(Color.RED)
@@ -57,7 +63,7 @@ class FirstFragment : Fragment() {
                         this.binding.textviewFirst.text =
                             "${this.binding.textviewFirst.text}${System.getProperty("line.separator")}Pasador abierto"
                     }
-                    if (state == State.EVENT_LOCK_CLOSED_DOOR_OPENED) {
+                    if (state == State.EVENT_DOOR_OPENED) {
                         this.binding.textviewFirst.text =
                             "${this.binding.textviewFirst.text}${System.getProperty("line.separator")}Puerta abierta"
                         binding.buttonFirst.setBackgroundColor(Color.MAGENTA)

@@ -16,7 +16,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="DESCUBRIR"
-            app:layout_constraintBottom_toTopOf="@id/textview_first"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -36,10 +35,34 @@
             android:id="@+id/simulate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="visible"
+            android:layout_marginTop="32dp"
             android:text="Simular"
+            android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/button_first">
+
+        </Button>
+
+        <Button
+            android:id="@+id/simulate2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Simular Succeeded"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/simulate">
+
+        </Button>
+
+        <Button
+            android:id="@+id/simulate3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Simular Rejected"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/simulate2">
 
         </Button>
     </androidx.constraintlayout.widget.ConstraintLayout>

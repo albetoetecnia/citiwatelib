@@ -63,6 +63,9 @@ public class CitiConnect {
         void onDiscover(String name, int state);
     }
 
+    public interface OnEvent {
+        void onDiscover(String name, int state);
+    }
     public interface OnErrorWaste {
         void onError(int error);
     }
@@ -111,16 +114,16 @@ public class CitiConnect {
                         Log.i(TAG, "BEACON EV2 BINARIO: " + binary_ev2);
                         switch (binary_ev2.substring(0, 2)) {
                             case "00":
-                                Toast.makeText(activity, "No event", Toast.LENGTH_SHORT).show();
+                                onDiscoverWaste.onDiscover("No event", State.EV2_ERROR_NO_EVENT);
                                 break;
                             case "01":
-                                Toast.makeText(activity, "Identification suceeded", Toast.LENGTH_SHORT).show();
+                                onDiscoverWaste.onDiscover("Identification suceedeed", State.EV2_SUCCEED_EVENT);
                                 break;
                             case "10":
-                                Toast.makeText(activity, "Id rejected, acces politics or device mode", Toast.LENGTH_SHORT).show();
+                                onDiscoverWaste.onDiscover("Id rejected, acces politics or device mode", State.EV2_ERROR_ID_REJECTED_POLITICS_DEVICE_MODE);
                                 break;
                             case "11":
-                                Toast.makeText(activity, "Id rejected, wrong project", Toast.LENGTH_SHORT).show();
+                                onDiscoverWaste.onDiscover("Id rejected, wrong project", State.EV2_ERROR_ID_REJECTED_WRONG_PROJECT);
                                 break;
                         }
                     }
@@ -128,6 +131,8 @@ public class CitiConnect {
                     if (continueFirstTime) {
                         if (binary.charAt(1) == 49) {
                             if (binary.charAt(2) == 49) {
+                                // LOOCK CLOSED AND PRESENCE DETECTED
+                                Log.d("CitiConnect", "LOCK CLOSED AND PRESENCE DETECTED");
                                 beaconSelected = beacon;
                                 isOpenedLock = false;
                                 handler.postDelayed(() -> {
@@ -139,28 +144,43 @@ public class CitiConnect {
                                 this.sendOpenSignal();
                                 onDiscoverWaste.onDiscover(name, State.EVENT_LOCK_CLOSED_PRESENCE);
                                 return;
+                            } else {
+                                Log.d("CitiConnect", "LOCK CLOSED 1 PRESENCE DETECTOR 0");
                             }
+                        } else {
+                            Log.d("CitiConnect", "LOCK CLOSED 0");
                         }
                     } else {
                         if (binary.charAt(0) == 49) {
+                            Log.d("CitiConnect", "LOCK OPENED WAIT DOOR");
                             if (binary.charAt(3) == 49) {
+                                Log.d("CitiConnect", "DOOR OPENED");
                                 isOpenedDoor = true;
-                                onDiscoverWaste.onDiscover(name, State.EVENT_LOCK_CLOSED_DOOR_OPENED);
+                                onDiscoverWaste.onDiscover(name, State.EVENT_DOOR_OPENED);
                                 //beaconSelected = null;
                                 //this.destroy();
                                 return;
+                            } else {
+                                Log.d("CitiConnect", "LOCK OPENED 1 DOOR OPENED 0");
                             }
-                            this.closeOpenSignal();
-                            isOpenedLock = true;
-                            isOpenedDoor = false;
-                            handler.postDelayed(() -> {
-                                if (!isOpenedDoor) {
-                                    onErrorWaste.onError(Error.TIME_OUT_DOOR);
-                                    this.destroy();
-                                }
-                            }, timer_door_opened * 1000L);
-                            onDiscoverWaste.onDiscover(name, State.EVENT_LOCK_OPENED);
-                            return;
+                            if (beaconTransmitter.isStarted()) {
+                                Log.d("CitiConnect", "LOCK OPENED 1 DOOR OPENED 0 isOpenDoor FALSE (Cancel transmission)");
+                                //CLOSE BEACON OPEN TRANSMISSION
+                                this.closeOpenSignal();
+                                isOpenedLock = true;
+                                isOpenedDoor = false;
+                                handler.postDelayed(() -> {
+                                    if (!isOpenedDoor) {
+                                        onErrorWaste.onError(Error.TIME_OUT_DOOR);
+                                        this.destroy();
+                                    }
+                                }, timer_door_opened * 1000L);
+                                onDiscoverWaste.onDiscover(name, State.EVENT_LOCK_OPENED);
+                                return;
+                            } else {
+                                Log.d("CitiConnect", "LOCK OPENED 1 DOOR OPENED 0 isOpenDoor TRUE");
+                                onDiscoverWaste.onDiscover(name, State.EVENT_DOOR_CLOSED);
+                            }
                         }
                     }
                 }
@@ -223,6 +243,49 @@ public class CitiConnect {
                 .build();
         beaconTransmitter.startAdvertising(beacon);
     }
+
+    public void simulateWasteSucceeded() {
+        if (beaconTransmitter != null) {
+            beaconTransmitter.stopAdvertising();
+        }
+        if (!grantedPermissions()) {
+            Log.d("CITICONNECT", "Nor permissions granted");
+            return;
+        }
+        if (beaconTransmitter.isStarted()) return;
+
+        beacon = new Beacon.Builder()
+                .setId1("43495400-0008-2836-0000-000000005160")
+                .setId2("16463")
+                .setId3("55714")
+                .setManufacturer(0x65535)
+                .setTxPower(-69)
+                .setDataFields(Arrays.asList(0L))
+                .build();
+        beaconTransmitter.startAdvertising(beacon);
+    }
+
+    public void simulateWasteRejected() {
+        if (beaconTransmitter != null) {
+            beaconTransmitter.stopAdvertising();
+        }
+        if (!grantedPermissions()) {
+            Log.d("CITICONNECT", "Nor permissions granted");
+            return;
+        }
+        if (beaconTransmitter.isStarted()) return;
+
+        beacon = new Beacon.Builder()
+                .setId1("43495400-0008-2836-0000-000000005160")
+                .setId2("36943")
+                .setId3("55714")
+                .setManufacturer(0x65535)
+                .setTxPower(-69)
+                .setDataFields(Arrays.asList(0L))
+                .build();
+        beaconTransmitter.startAdvertising(beacon);
+    }
+
 
     public void closeOpenSignal() {
         if (beaconTransmitter != null) {
