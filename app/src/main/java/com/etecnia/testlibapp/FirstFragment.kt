@@ -66,6 +66,12 @@ class FirstFragment : Fragment() {
                     if (state == State.EVENT_DOOR_OPENED) {
                         this.binding.textviewFirst.text =
                             "${this.binding.textviewFirst.text}${System.getProperty("line.separator")}Puerta abierta"
+                       // binding.buttonFirst.setBackgroundColor(Color.MAGENTA)
+                       // binding.buttonFirst.text = "DESCUBRIR"
+                    }
+                    if (state == State.EVENT_DOOR_CLOSED) {
+                        this.binding.textviewFirst.text =
+                            "${this.binding.textviewFirst.text}${System.getProperty("line.separator")}Puerta cerrada"
                         binding.buttonFirst.setBackgroundColor(Color.MAGENTA)
                         binding.buttonFirst.text = "DESCUBRIR"
                     }
