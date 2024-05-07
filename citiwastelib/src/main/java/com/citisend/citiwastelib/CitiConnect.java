@@ -129,7 +129,7 @@ public class CitiConnect {
                     }
 
                     if (continueFirstTime) {
-                        if (binary.charAt(1) == 49) {
+                       // if (binary.charAt(1) == 49) {
                             if (binary.charAt(2) == 49) {
                                 // LOOCK CLOSED AND PRESENCE DETECTED
                                 Log.d("CitiConnect", "LOCK CLOSED AND PRESENCE DETECTED");
@@ -147,9 +147,9 @@ public class CitiConnect {
                             } else {
                                 Log.d("CitiConnect", "LOCK CLOSED 1 PRESENCE DETECTOR 0");
                             }
-                        } else {
-                            Log.d("CitiConnect", "LOCK CLOSED 0");
-                        }
+                       // } else {
+                         //   Log.d("CitiConnect", "LOCK CLOSED 0");
+                       // }
                     } else {
                         if (binary.charAt(0) == 49) {
                             Log.d("CitiConnect", "LOCK OPENED WAIT DOOR");
@@ -183,7 +183,7 @@ public class CitiConnect {
                             }
                         }
                     }
-                }
+               // }
             }
         });
         region = new Region("com.citisend.citiconectregion", null, null, null);
