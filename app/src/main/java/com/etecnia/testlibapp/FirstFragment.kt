@@ -10,8 +10,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.citisend.citiwastelib.CitiConnect
-import com.citisend.citiwastelib.Error.TIME_OUT_DOOR
-import com.citisend.citiwastelib.Error.TIME_OUT_LOCK
+import com.citisend.citiwastelib.Error.TIME_OUT
 import com.citisend.citiwastelib.State
 import com.etecnia.testlibapp.databinding.FragmentFirstBinding
 
@@ -22,6 +21,8 @@ class FirstFragment : Fragment() {
 
     private lateinit var citiConnect: CitiConnect
     private var _binding: FragmentFirstBinding? = null
+    private var presencia: Boolean? = false
+    private var identificacion: Boolean? = false
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -39,7 +40,7 @@ class FirstFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        citiConnect = CitiConnect(activity, 5888, 111,10, 20);
+        citiConnect = CitiConnect(activity, 5888, 111, 4);
         binding.simulate.setOnClickListener {
             citiConnect.simulateWaste()
         }
@@ -50,39 +51,46 @@ class FirstFragment : Fragment() {
             citiConnect.simulateWasteRejected()
         }
         binding.buttonFirst.setOnClickListener {
+            presencia = false;
+            identificacion = false
             if (!citiConnect.isMonitoring) {
                 binding.buttonFirst.setBackgroundColor(Color.RED)
                 binding.buttonFirst.text = "PARAR"
                 binding.textviewFirst.text = ""
                 this.citiConnect.discover({ name, state ->
                     Log.d("DISCOVER", name)
-                    if (state == State.EVENT_LOCK_CLOSED_PRESENCE) {
-                        this.binding.textviewFirst.text = "Presencia detectada"
-                    }
-                    if (state == State.EVENT_LOCK_OPENED) {
-                        this.binding.textviewFirst.text =
-                            "${this.binding.textviewFirst.text}${System.getProperty("line.separator")}Pasador abierto"
-                    }
-                    if (state == State.EVENT_DOOR_OPENED) {
-                        this.binding.textviewFirst.text =
-                            "${this.binding.textviewFirst.text}${System.getProperty("line.separator")}Puerta abierta"
-                       // binding.buttonFirst.setBackgroundColor(Color.MAGENTA)
-                       // binding.buttonFirst.text = "DESCUBRIR"
-                    }
-                    if (state == State.EVENT_DOOR_CLOSED) {
-                        this.binding.textviewFirst.text =
-                            "${this.binding.textviewFirst.text}${System.getProperty("line.separator")}Puerta cerrada"
-                        binding.buttonFirst.setBackgroundColor(Color.MAGENTA)
-                        binding.buttonFirst.text = "DESCUBRIR"
+                    if (presencia == false) {
+                        if (state == State.EVENT_PRESENCE_DETECTED) {
+                            this.presencia = true
+                            this.binding.textviewFirst.text = "Presencia detectada"
+                        }
+                    } else {
+                        if (state == State.EV2_SUCCEED_EVENT) {
+                            identificacion = true
+                            this.binding.textviewFirst.text =
+                                "${this.binding.textviewFirst.text}${System.getProperty("line.separator")} Identificación realizada"
+                            binding.buttonFirst.setBackgroundColor(Color.MAGENTA)
+                            binding.buttonFirst.text = "DESCUBRIR"
+                        }
+                        if (state == State.EV2_ERROR_ID_REJECTED_POLITICS_DEVICE_MODE) {
+                            this.binding.textviewFirst.text =
+                                "${this.binding.textviewFirst.text}${System.getProperty("line.separator")} EV2_ERROR_ID_REJECTED_POLITICS_DEVICE_MODE"
+                            binding.buttonFirst.setBackgroundColor(Color.MAGENTA)
+                            binding.buttonFirst.text = "DESCUBRIR"
+                        }
+                        if (state == State.EV2_ERROR_ID_REJECTED_WRONG_PROJECT) {
+                            this.binding.textviewFirst.text =
+                                "${this.binding.textviewFirst.text}${System.getProperty("line.separator")} EV2_ERROR_ID_REJECTED_WRONG_PROJECT"
+                            binding.buttonFirst.setBackgroundColor(Color.MAGENTA)
+                            binding.buttonFirst.text = "DESCUBRIR"
+                        }
                     }
                 }, { error ->
-                    //citiConnect.destroy()
                     binding.buttonFirst.setBackgroundColor(Color.MAGENTA)
                     binding.buttonFirst.text = "DESCUBRIR"
-                    if (error == TIME_OUT_DOOR) {
-                        this.binding.textviewFirst.text = "Tiempo excedido en la apertura de PUERTA"
-                    } else if (error == TIME_OUT_LOCK) {
-                        this.binding.textviewFirst.text = "Tiempo excedido en la apertura del PASADOR"
+                    if (error == TIME_OUT) {
+                        this.binding.textviewFirst.text =
+                            "${this.binding.textviewFirst.text}${System.getProperty("line.separator")} Tiempo excedido en la Identificación"
                     }
                 })
             } else {

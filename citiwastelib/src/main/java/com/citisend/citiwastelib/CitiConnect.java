@@ -30,26 +30,21 @@ public class CitiConnect {
     Activity activity;
     private BeaconManager beaconManager;
     private Region region;
-    private int timer_lock_opened = 3;
-    private int timer_door_opened = 10;
+    private int timer = 2;
     private final BeaconTransmitter beaconTransmitter;
     private boolean isMonitoring = false;
     private Beacon beacon;
-    private boolean isOpenedLock = false;
-    private boolean isOpenedDoor = false;
-    private boolean discoverd = false;
+    private boolean isIndentificationSucceded = false;
     Beacon beaconSelected;
     private String id2Signal;
     private String id3Signal;
     private String project_id;
     private String user_id;
 
-    public CitiConnect(Activity activity, int project_id, int user_id, @Nullable Integer timer_lock_opened, @Nullable Integer timer_door_opened) {
+    public CitiConnect(Activity activity, int project_id, int user_id, @Nullable Integer timer) {
         this.activity = activity;
-        if (timer_lock_opened != null)
-            this.timer_lock_opened = timer_lock_opened;
-        if (timer_door_opened != null)
-            this.timer_door_opened = timer_door_opened;
+        if (timer != null)
+            this.timer = timer;
         this.project_id = Integer.toHexString(project_id);
         String value = String.format("%8s", Integer.toHexString(user_id)).replace(' ', '0');
         this.user_id = value.substring(0, 4) + "-" + value.substring(4, value.length());
@@ -66,6 +61,7 @@ public class CitiConnect {
     public interface OnEvent {
         void onDiscover(String name, int state);
     }
+
     public interface OnErrorWaste {
         void onError(int error);
     }
@@ -78,11 +74,17 @@ public class CitiConnect {
 
     public void discover(OnDiscoverWaste onDiscoverWaste, OnErrorWaste onErrorWaste) {
         destroy();
+        isIndentificationSucceded = false;
         isMonitoring = true;
         beaconManager = BeaconManager.getInstanceForApplication(this.activity);
         beaconManager.getBeaconParsers().add(new BeaconParser().
                 setBeaconLayout("m:2-3=beac,i:4-19,i:20-21,i:22-23,p:24-24,d:25-25"));
         beaconManager.addRangeNotifier((beacons, region) -> {
+            if (isIndentificationSucceded) {
+                destroy();
+                Log.e(TAG, "BEACON EV2: " + "OUT");
+                return;
+            }
             for (Beacon beacon : beacons) {
                 String name = beacon.getId1().toHexString().substring(2, 8);
                 if (name.equals("434954")) {
@@ -100,57 +102,62 @@ public class CitiConnect {
                     String binary = Utils.HexToBinary(beacon.getId1().toHexString().
                             substring(beacon.getId1().toHexString().length() - 2));
                     Log.i(TAG, "BEACON FOUND id1: " + beacon.getId1());
-                    Log.i(TAG, "BEACON FOUND test lib id2: " + beacon.getId2());
-                    Log.i(TAG, "BEACON FOUND test lib id3: " + beacon.getId3());
-                    Log.i(TAG, "BEACON FOUND size " + beacons.size());
-                    Log.i(TAG, "BEACON FOUND Binario ev1 " + binary);
                     Log.i(TAG, "BEACON FOUND Binario ev1 hex " + beacon.getId1().toHexString().
                             substring(beacon.getId1().toHexString().length() - 2));
-
-                    if (!String.valueOf(beacon.getId2().toInt()).equalsIgnoreCase(id2Signal)) {
-                        Log.i(TAG, "BEACON EV2 MESSAGE: " + beacon.getId2().toHexString());
-                        String binary_ev2 = Utils.HexToBinary(beacon.getId2().toHexString().
-                                substring(2, 4));
-                        Log.i(TAG, "BEACON EV2 BINARIO: " + binary_ev2);
-                        switch (binary_ev2.substring(0, 2)) {
-                            case "00":
-                                onDiscoverWaste.onDiscover("No event", State.EV2_ERROR_NO_EVENT);
-                                break;
-                            case "01":
-                                onDiscoverWaste.onDiscover("Identification suceedeed", State.EV2_SUCCEED_EVENT);
-                                break;
-                            case "10":
-                                onDiscoverWaste.onDiscover("Id rejected, acces politics or device mode", State.EV2_ERROR_ID_REJECTED_POLITICS_DEVICE_MODE);
-                                break;
-                            case "11":
-                                onDiscoverWaste.onDiscover("Id rejected, wrong project", State.EV2_ERROR_ID_REJECTED_WRONG_PROJECT);
-                                break;
-                        }
+                    String binary_ev2 = Utils.HexToBinary(beacon.getId2().toHexString().
+                            substring(2, 4));
+                    Log.i(TAG, "BEACON EV2 " + binary_ev2.substring(0, 2));
+                    switch (binary_ev2.substring(0, 2)) {
+                        case "01":
+                            continueFirstTime = false;
+                            destroy();
+                            isIndentificationSucceded = true;
+                            onDiscoverWaste.onDiscover("Identification suceedeed", State.EV2_SUCCEED_EVENT);
+                            break;
+                        case "10":
+                            continueFirstTime = false;
+                            destroy();
+                            isIndentificationSucceded = true;
+                            onDiscoverWaste.onDiscover("Id rejected, acces politics or device mode", State.EV2_ERROR_ID_REJECTED_POLITICS_DEVICE_MODE);
+                            break;
+                        case "11":
+                            continueFirstTime = false;
+                            destroy();
+                            isIndentificationSucceded = true;
+                            onDiscoverWaste.onDiscover("Id rejected, wrong project", State.EV2_ERROR_ID_REJECTED_WRONG_PROJECT);
+                            break;
                     }
 
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
                     if (continueFirstTime) {
-                       // if (binary.charAt(1) == 49) {
-                            if (binary.charAt(2) == 49) {
-                                // LOOCK CLOSED AND PRESENCE DETECTED
-                                Log.d("CitiConnect", "LOCK CLOSED AND PRESENCE DETECTED");
+                        if (binary.charAt(2) == 49) {
+                            // PRESENCE DETECTED
+                            if (!isIndentificationSucceded) {
+                                Log.d("BEACON EV2", "LOCK PRESENCE DETECTED");
                                 beaconSelected = beacon;
-                                isOpenedLock = false;
+                                isIndentificationSucceded = false;
                                 handler.postDelayed(() -> {
-                                    if (!isOpenedLock) {
-                                        onErrorWaste.onError(Error.TIME_OUT_LOCK);
+                                    Log.w(TAG, "BEACON EV2: " + "FIN TIME OUT");
+                                    if (!isIndentificationSucceded) {
+                                        onErrorWaste.onError(Error.TIME_OUT);
                                         this.destroy();
                                     }
-                                }, timer_lock_opened * 1000L);
+                                }, timer * 1000L);
                                 this.sendOpenSignal();
-                                onDiscoverWaste.onDiscover(name, State.EVENT_LOCK_CLOSED_PRESENCE);
-                                return;
-                            } else {
-                                Log.d("CitiConnect", "LOCK CLOSED 1 PRESENCE DETECTOR 0");
+                                onDiscoverWaste.onDiscover(name, State.EVENT_PRESENCE_DETECTED);
                             }
-                       // } else {
-                         //   Log.d("CitiConnect", "LOCK CLOSED 0");
-                       // }
-                    } else {
+                            return;
+                        } else {
+                            Log.d("CitiConnect", "PRESENCE DETECTOR 0");
+                        }
+                        // } else {
+                        //   Log.d("CitiConnect", "LOCK CLOSED 0");
+                        // }
+                    }/* else {
                         if (binary.charAt(0) == 49) {
                             Log.d("CitiConnect", "LOCK OPENED WAIT DOOR");
                             if (binary.charAt(3) == 49) {
@@ -159,6 +166,11 @@ public class CitiConnect {
                                 onDiscoverWaste.onDiscover(name, State.EVENT_DOOR_OPENED);
                                 //beaconSelected = null;
                                 //this.destroy();
+                                if (beaconTransmitter.isStarted()) {
+                                    this.closeOpenSignal();
+                                    isOpenedLock = true;
+                                    onDiscoverWaste.onDiscover(name, State.EVENT_LOCK_OPENED);
+                                }
                                 return;
                             } else {
                                 Log.d("CitiConnect", "LOCK OPENED 1 DOOR OPENED 0");
@@ -182,7 +194,7 @@ public class CitiConnect {
                                 onDiscoverWaste.onDiscover(name, State.EVENT_DOOR_CLOSED);
                             }
                         }
-                    }
+                    }*/
                 }
             }
         });
@@ -195,6 +207,7 @@ public class CitiConnect {
         handler.removeCallbacksAndMessages(null);
         if (beaconManager != null) {
             beaconManager.stopRangingBeacons(region);
+            Log.d("BEACON EV2", "stopRangingBeacons");
             beaconManager = null;
             isMonitoring = false;
         }
@@ -213,10 +226,10 @@ public class CitiConnect {
             return;
         }
         if (beaconTransmitter.isStarted()) return;
-              //  .setId1("43495400-1008-0000-0000-000000000100")
+        //  .setId1("43495400-1008-0000-0000-000000000100")
 
         beacon = new Beacon.Builder()
-                .setId1("434d4400-1008-"+ this.project_id +"-" + this.user_id + "00000001")
+                .setId1("434d4400-1008-" + this.project_id + "-" + this.user_id + "00000001")
                 .setId2(id2Signal)
                 .setId3(id3Signal)
                 .setManufacturer(0x65535)
