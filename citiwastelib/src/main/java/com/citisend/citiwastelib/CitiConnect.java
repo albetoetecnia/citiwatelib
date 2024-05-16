@@ -137,6 +137,7 @@ public class CitiConnect {
                         if (binary.charAt(2) == 49) {
                             // PRESENCE DETECTED
                             if (!isIndentificationSucceded) {
+                                continueFirstTime = false;
                                 Log.d("BEACON EV2", "LOCK PRESENCE DETECTED");
                                 beaconSelected = beacon;
                                 isIndentificationSucceded = false;
