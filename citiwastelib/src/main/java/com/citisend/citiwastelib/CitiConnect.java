@@ -80,15 +80,15 @@ public class CitiConnect {
         beaconManager.getBeaconParsers().add(new BeaconParser().
                 setBeaconLayout("m:2-3=beac,i:4-19,i:20-21,i:22-23,p:24-24,d:25-25"));
         beaconManager.addRangeNotifier((beacons, region) -> {
+            boolean continueFirstTime = false;
             if (isIndentificationSucceded) {
                 destroy();
-                Log.e(TAG, "BEACON EV2: " + "OUT");
+                Log.e(TAG, "BEACON EV2: " + "OUT " + continueFirstTime);
                 return;
             }
             for (Beacon beacon : beacons) {
                 String name = beacon.getId1().toHexString().substring(2, 8);
                 if (name.equals("434954")) {
-                    boolean continueFirstTime = false;
                     if (beaconSelected == null) {
                         continueFirstTime = true;
                         id2Signal = String.valueOf(beacon.getId2().toInt());
@@ -99,6 +99,7 @@ public class CitiConnect {
                         }
                     }
 
+                    if (!isMonitoring) return;
                     String binary = Utils.HexToBinary(beacon.getId1().toHexString().
                             substring(beacon.getId1().toHexString().length() - 2));
                     Log.i(TAG, "BEACON FOUND id1: " + beacon.getId1());
@@ -109,18 +110,21 @@ public class CitiConnect {
                     Log.i(TAG, "BEACON EV2 " + binary_ev2.substring(0, 2));
                     switch (binary_ev2.substring(0, 2)) {
                         case "01":
+                            if (!isMonitoring) return;
                             continueFirstTime = false;
                             destroy();
                             isIndentificationSucceded = true;
                             onDiscoverWaste.onDiscover("Identification suceedeed", State.EV2_SUCCEED_EVENT);
                             break;
                         case "10":
+                            if (!isMonitoring) return;
                             continueFirstTime = false;
                             destroy();
                             isIndentificationSucceded = true;
                             onDiscoverWaste.onDiscover("Id rejected, acces politics or device mode", State.EV2_ERROR_ID_REJECTED_POLITICS_DEVICE_MODE);
                             break;
                         case "11":
+                            if (!isMonitoring) return;
                             continueFirstTime = false;
                             destroy();
                             isIndentificationSucceded = true;
@@ -205,6 +209,8 @@ public class CitiConnect {
 
     public void destroy() {
         beaconSelected = null;
+        isMonitoring = false;
+        isIndentificationSucceded = false;
         handler.removeCallbacksAndMessages(null);
         if (beaconManager != null) {
             beaconManager.stopRangingBeacons(region);
