@@ -82,8 +82,14 @@ public class CitiConnect {
         beaconManager.addRangeNotifier((beacons, region) -> {
             boolean continueFirstTime = false;
             if (isIndentificationSucceded) {
+                Log.e(TAG, "BEACON EV2: " + "OUT " + continueFirstTime);
                 destroy();
                 Log.e(TAG, "BEACON EV2: " + "OUT " + continueFirstTime);
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
                 return;
             }
             for (Beacon beacon : beacons) {
@@ -100,6 +106,13 @@ public class CitiConnect {
                     }
 
                     if (!isMonitoring) return;
+
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+
                     String binary = Utils.HexToBinary(beacon.getId1().toHexString().
                             substring(beacon.getId1().toHexString().length() - 2));
                     Log.i(TAG, "BEACON FOUND id1: " + beacon.getId1());
@@ -111,6 +124,7 @@ public class CitiConnect {
                     switch (binary_ev2.substring(0, 2)) {
                         case "01":
                             if (!isMonitoring) return;
+                            if (beaconSelected == null) break;
                             continueFirstTime = false;
                             destroy();
                             isIndentificationSucceded = true;
@@ -118,6 +132,7 @@ public class CitiConnect {
                             break;
                         case "10":
                             if (!isMonitoring) return;
+                            if (beaconSelected == null) break;
                             continueFirstTime = false;
                             destroy();
                             isIndentificationSucceded = true;
@@ -125,12 +140,14 @@ public class CitiConnect {
                             break;
                         case "11":
                             if (!isMonitoring) return;
+                            if (beaconSelected == null) break;
                             continueFirstTime = false;
                             destroy();
                             isIndentificationSucceded = true;
                             onDiscoverWaste.onDiscover("Id rejected, wrong project", State.EV2_ERROR_ID_REJECTED_WRONG_PROJECT);
                             break;
                     }
+                    Log.i(TAG, "BEACON EV2 " + "Continuing");
 
                     try {
                         Thread.sleep(100);
