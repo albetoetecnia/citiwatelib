@@ -1,5 +1,6 @@
 plugins {
     id("com.android.library")
+    id("org.jetbrains.kotlin.android")
     id("maven-publish")
 }
 
@@ -32,6 +33,7 @@ android {
         publishing {
             publications {
                 create<MavenPublication>("release") {
+                    components.getByName("release")
                     groupId = "com.citisend.citiwastelib"
                     artifactId = "citiwastelib"
                     version = "1.0"
