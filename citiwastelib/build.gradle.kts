@@ -53,7 +53,7 @@ afterEvaluate {
     publishing {
         publications {
             create<MavenPublication>("release") {
-                components.getByName("release")
+                from(components["release"])
                 groupId = "com.citisend.citiwastelib"
                 artifactId = "citiwastelib"
                 version = "1.0"
