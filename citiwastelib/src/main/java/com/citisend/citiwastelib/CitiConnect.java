@@ -263,7 +263,7 @@ public class CitiConnect {
         beaconTransmitter.startAdvertising(beacon);
     }
 
-    public void simulateWaste() {
+    private void simulateWaste() {
         if (!grantedPermissions()) {
             Log.d("CITICONNECT", "Nor permissions granted");
             return;
@@ -281,7 +281,7 @@ public class CitiConnect {
         beaconTransmitter.startAdvertising(beacon);
     }
 
-    public void simulateWasteSucceeded() {
+    private void simulateWasteSucceeded() {
         if (beaconTransmitter != null) {
             beaconTransmitter.stopAdvertising();
         }
@@ -302,7 +302,7 @@ public class CitiConnect {
         beaconTransmitter.startAdvertising(beacon);
     }
 
-    public void simulateWasteRejected() {
+    private void simulateWasteRejected() {
         if (beaconTransmitter != null) {
             beaconTransmitter.stopAdvertising();
         }

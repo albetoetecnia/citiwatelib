@@ -1,5 +1,6 @@
 plugins {
     id("com.android.library")
+    id("maven-publish")
 }
 
 android {
@@ -15,7 +16,7 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -25,6 +26,21 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    afterEvaluate {
+        publishing {
+            publications {
+                create<MavenPublication>("release") {
+                    groupId = "com.citisend.citiwastelib"
+                    artifactId = "citiwastelib"
+                    version = "1.0"
+                }
+                repositories {
+                    mavenLocal()
+                }
+            }
+        }
     }
 }
 

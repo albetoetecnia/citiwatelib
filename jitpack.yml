@@ -1,0 +1,4 @@
+jdk:
+  - jbr-17
+before_install:
+  - ./scripts/prepareJitpackEnvironment.sh

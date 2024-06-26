@@ -42,13 +42,13 @@ class FirstFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         citiConnect = CitiConnect(activity, 5888, 111, 4);
         binding.simulate.setOnClickListener {
-            citiConnect.simulateWaste()
+           // citiConnect.simulateWaste()
         }
         binding.simulate2.setOnClickListener {
-            citiConnect.simulateWasteSucceeded()
+           // citiConnect.simulateWasteSucceeded()
         }
         binding.simulate3.setOnClickListener {
-            citiConnect.simulateWasteRejected()
+           // citiConnect.simulateWasteRejected()
         }
         binding.buttonFirst.setOnClickListener {
             presencia = false;
