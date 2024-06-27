@@ -1,0 +1,160 @@
+# compiler: R8
+# compiler_version: 8.5.10
+# common_typos_disable
+# {"id":"com.android.tools.r8.mapping","version":"2.2"}
+# pg_map_id: 235dd3a
+# pg_map_hash: SHA-256 235dd3a4c9cf1ca9c3e63d621ea9151ffa7fd8be10578b5965742d487a44c464
+com.citisend.citiwastelib.CitiConnect -> com.citisend.citiwastelib.CitiConnect:
+# {"id":"sourceFile","fileName":"CitiConnect.java"}
+    33:33:void <init>(android.app.Activity,int,int,java.lang.Integer) -> <init>
+    35:35:void <init>(android.app.Activity,int,int,java.lang.Integer) -> <init>
+    37:37:void <init>(android.app.Activity,int,int,java.lang.Integer) -> <init>
+    44:44:void <init>(android.app.Activity,int,int,java.lang.Integer) -> <init>
+    45:45:void <init>(android.app.Activity,int,int,java.lang.Integer) -> <init>
+    46:46:void <init>(android.app.Activity,int,int,java.lang.Integer) -> <init>
+    47:47:void <init>(android.app.Activity,int,int,java.lang.Integer) -> <init>
+    48:48:void <init>(android.app.Activity,int,int,java.lang.Integer) -> <init>
+    49:49:void <init>(android.app.Activity,int,int,java.lang.Integer) -> <init>
+    50:50:void <init>(android.app.Activity,int,int,java.lang.Integer) -> <init>
+    51:51:void <init>(android.app.Activity,int,int,java.lang.Integer) -> <init>
+    52:52:void <init>(android.app.Activity,int,int,java.lang.Integer) -> <init>
+    53:53:void <init>(android.app.Activity,int,int,java.lang.Integer) -> <init>
+    54:54:void <init>(android.app.Activity,int,int,java.lang.Integer) -> <init>
+    55:55:void <init>(android.app.Activity,int,int,java.lang.Integer) -> <init>
+    328:328:void closeOpenSignal() -> closeOpenSignal
+    329:329:void closeOpenSignal() -> closeOpenSignal
+    331:331:void closeOpenSignal() -> closeOpenSignal
+    228:228:void destroy() -> destroy
+    229:229:void destroy() -> destroy
+    230:230:void destroy() -> destroy
+    231:231:void destroy() -> destroy
+    232:232:void destroy() -> destroy
+    233:233:void destroy() -> destroy
+    234:234:void destroy() -> destroy
+    235:235:void destroy() -> destroy
+    236:236:void destroy() -> destroy
+    238:238:void destroy() -> destroy
+    239:239:void destroy() -> destroy
+    241:241:void destroy() -> destroy
+    76:76:void discover(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste) -> discover
+    77:77:void discover(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste) -> discover
+    78:78:void discover(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste) -> discover
+    79:79:void discover(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste) -> discover
+    80:80:void discover(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste) -> discover
+    81:81:void discover(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste) -> discover
+    82:82:void discover(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste) -> discover
+    223:223:void discover(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste) -> discover
+    224:224:void discover(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste) -> discover
+    225:225:void discover(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste) -> discover
+    70:70:boolean grantedPermissions() -> grantedPermissions
+    244:244:boolean isMonitoring() -> isMonitoring
+    166:166:void lambda$discover$0(com.citisend.citiwastelib.CitiConnect$OnErrorWaste) -> lambda$discover$0
+    167:167:void lambda$discover$0(com.citisend.citiwastelib.CitiConnect$OnErrorWaste) -> lambda$discover$0
+    168:168:void lambda$discover$0(com.citisend.citiwastelib.CitiConnect$OnErrorWaste) -> lambda$discover$0
+    169:169:void lambda$discover$0(com.citisend.citiwastelib.CitiConnect$OnErrorWaste) -> lambda$discover$0
+    171:171:void lambda$discover$0(com.citisend.citiwastelib.CitiConnect$OnErrorWaste) -> lambda$discover$0
+    83:83:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    84:84:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    85:85:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    86:86:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    87:87:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    89:89:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    90:90:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    91:91:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    92:92:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    93:93:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    95:95:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    96:96:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    97:97:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    98:98:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    99:99:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    100:100:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    101:101:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    103:103:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    104:104:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    108:108:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    111:111:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    112:112:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    113:113:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    114:114:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    116:116:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    117:117:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    118:118:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    119:119:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    120:120:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    121:121:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    122:122:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    123:123:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    124:124:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    126:126:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    127:127:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    128:128:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    129:129:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    130:130:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    131:131:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    132:132:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    134:134:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    135:135:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    136:136:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    137:137:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    138:138:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    139:139:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    140:140:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    142:142:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    143:143:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    144:144:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    145:145:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    146:146:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    147:147:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    150:150:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    153:153:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    154:154:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    155:155:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    156:156:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    157:157:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    158:158:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    160:160:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    161:161:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    162:162:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    163:163:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    164:164:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    165:165:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    172:172:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    173:173:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    175:175:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    177:177:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    221:221:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    222:222:void lambda$discover$1(com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste,com.citisend.citiwastelib.CitiConnect$OnErrorWaste,java.util.Collection,org.altbeacon.beacon.Region) -> lambda$discover$1
+    248:248:void sendOpenSignal() -> sendOpenSignal
+    249:249:void sendOpenSignal() -> sendOpenSignal
+    250:250:void sendOpenSignal() -> sendOpenSignal
+    252:252:void sendOpenSignal() -> sendOpenSignal
+    255:255:void sendOpenSignal() -> sendOpenSignal
+    256:256:void sendOpenSignal() -> sendOpenSignal
+    257:257:void sendOpenSignal() -> sendOpenSignal
+    258:258:void sendOpenSignal() -> sendOpenSignal
+    259:259:void sendOpenSignal() -> sendOpenSignal
+    260:260:void sendOpenSignal() -> sendOpenSignal
+    261:261:void sendOpenSignal() -> sendOpenSignal
+    262:262:void sendOpenSignal() -> sendOpenSignal
+    263:263:void sendOpenSignal() -> sendOpenSignal
+    264:264:void sendOpenSignal() -> sendOpenSignal
+com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste -> com.citisend.citiwastelib.CitiConnect$OnDiscoverWaste:
+# {"id":"sourceFile","fileName":"CitiConnect.java"}
+com.citisend.citiwastelib.CitiConnect$OnErrorWaste -> com.citisend.citiwastelib.CitiConnect$OnErrorWaste:
+# {"id":"sourceFile","fileName":"CitiConnect.java"}
+com.citisend.citiwastelib.CitiConnect$OnEvent -> com.citisend.citiwastelib.CitiConnect$OnEvent:
+# {"id":"sourceFile","fileName":"CitiConnect.java"}
+com.citisend.citiwastelib.Error -> com.citisend.citiwastelib.Error:
+# {"id":"sourceFile","fileName":"Error.java"}
+    3:3:void <init>() -> <init>
+com.citisend.citiwastelib.State -> com.citisend.citiwastelib.State:
+# {"id":"sourceFile","fileName":"State.java"}
+    3:3:void <init>() -> <init>
+com.citisend.citiwastelib.Utils -> com.citisend.citiwastelib.Utils:
+# {"id":"sourceFile","fileName":"Utils.java"}
+    6:6:void <init>() -> <init>
+    8:8:java.lang.String HexToBinary(java.lang.String) -> HexToBinary
+    9:9:java.lang.String HexToBinary(java.lang.String) -> HexToBinary
+    10:10:java.lang.String HexToBinary(java.lang.String) -> HexToBinary
+    11:11:java.lang.String HexToBinary(java.lang.String) -> HexToBinary

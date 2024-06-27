@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.citisend.citiwastelib.CitiConnect
-import com.citisend.citiwastelib.Error.TIME_OUT
 import com.citisend.citiwastelib.State
 import com.etecnia.testlibapp.databinding.FragmentFirstBinding
 

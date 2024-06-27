@@ -25,7 +25,7 @@ android {
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
         freeCompilerArgs = listOf("-XXLanguage:-ProperCheckAnnotationsTargetInTypeUsePositions")
     }
 
@@ -71,7 +71,7 @@ afterEvaluate {
                 from(components["release"])
                 groupId = "com.github.albetoetecnia"
                 artifactId = "marsupilami"
-                version = "1.0.5"
+                version = "1.0.7"
             }
             repositories {
                 mavenLocal()
