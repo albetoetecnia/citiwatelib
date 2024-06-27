@@ -8,6 +8,12 @@ android {
     namespace = "com.citisend.citiwastelib"
     compileSdk = 34
 
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+        }
+    }
+
     defaultConfig {
         minSdk = 26
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -47,7 +53,7 @@ dependencies {
 afterEvaluate {
     publishing {
         publications {
-            create<MavenPublication>("maven") {
+            create<MavenPublication>("release") {
                 from(components["release"])
                 groupId = "com.citisend.citiwastelib"
                 artifactId = "citiwastelib"
@@ -55,6 +61,10 @@ afterEvaluate {
             }
             repositories {
                 mavenLocal()
+                maven {
+                    name = "myrepo"
+                    url = uri("${project.buildDir}/repo")
+                }
             }
         }
     }
