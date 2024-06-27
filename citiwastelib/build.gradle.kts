@@ -14,6 +14,7 @@ android {
         }
     }
 
+
     defaultConfig {
         minSdk = 26
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -23,9 +24,22 @@ android {
         }
     }
 
+    kotlinOptions {
+        jvmTarget = "1.8"
+        freeCompilerArgs = listOf("-XXLanguage:-ProperCheckAnnotationsTargetInTypeUsePositions")
+    }
+
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
+
+        debug {
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -55,9 +69,9 @@ afterEvaluate {
         publications {
             create<MavenPublication>("release") {
                 from(components["release"])
-                groupId = "com.citisend.citiwastelib"
-                artifactId = "citiwastelib"
-                version = "1.0"
+                groupId = "com.github.albetoetecnia"
+                artifactId = "marsupilami"
+                version = "1.0.5"
             }
             repositories {
                 mavenLocal()
