@@ -39,7 +39,7 @@ android {
         }
 
         debug {
-            isMinifyEnabled = true
+            isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -71,7 +71,7 @@ afterEvaluate {
                 from(components["release"])
                 groupId = "com.github.albetoetecnia"
                 artifactId = "citiwatelib"
-                version = "1.0.7"
+                version = "1.0.10"
             }
         }
     }
