@@ -8,13 +8,6 @@ android {
     namespace = "com.citisend.citiwastelib"
     compileSdk = 34
 
-    publishing {
-        singleVariant("release") {
-            withSourcesJar()
-        }
-    }
-
-
     defaultConfig {
         minSdk = 26
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -32,14 +25,6 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = true
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
-
-        debug {
-            isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -71,7 +56,7 @@ afterEvaluate {
                 from(components["release"])
                 groupId = "com.github.albetoetecnia"
                 artifactId = "citiwatelib"
-                version = "1.0.13"
+                version = "1.0.15"
             }
         }
     }
