@@ -70,15 +70,8 @@ afterEvaluate {
             create<MavenPublication>("release") {
                 from(components["release"])
                 groupId = "com.github.albetoetecnia"
-                artifactId = "marsupilami"
+                artifactId = "citiwatelib"
                 version = "1.0.7"
-            }
-            repositories {
-                mavenLocal()
-                maven {
-                    name = "myrepo"
-                    url = uri("${project.buildDir}/repo")
-                }
             }
         }
     }

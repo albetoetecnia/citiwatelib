@@ -26,6 +26,7 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -40,7 +41,7 @@ android {
 
 dependencies {
     //implementation(project(":citiwastelib"))
-    implementation ("com.github.albetoetecnia:marsupilami:v1.0.6")
+    implementation ("com.github.albetoetecnia:marsupilami:1.0.8")
     implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.appcompat:appcompat:1.7.0")
     implementation("com.google.android.material:material:1.12.0")
