@@ -71,7 +71,7 @@ afterEvaluate {
                 from(components["release"])
                 groupId = "com.github.albetoetecnia"
                 artifactId = "citiwatelib"
-                version = "1.0.10"
+                version = "1.0.11"
             }
         }
     }
